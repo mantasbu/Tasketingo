@@ -25,11 +25,8 @@ fun TaskItem(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(
-                top = 8.dp,
-                start = 8.dp,
-                end = 8.dp
-            )
+            .padding(8.dp),
+        elevation = 4.dp
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
