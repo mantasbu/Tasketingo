@@ -18,6 +18,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kotlisoft.tasketingo.R
 import com.kotlisoft.tasketingo.domain.model.Task
@@ -103,7 +104,10 @@ fun TasksScreen(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(text = stringResource(id = R.string.no_tasks))
+                    Text(
+                        text = stringResource(id = R.string.no_tasks),
+                        fontSize = 20.sp
+                    )
                 }
             }
         },
