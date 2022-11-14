@@ -1,6 +1,8 @@
 package com.kotlisoft.tasketingo.presentation
 
 import android.widget.Toast
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -15,6 +17,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -39,6 +42,9 @@ fun TasksScreen(
 
     val tasksViewState by viewModel.tasksViewState.collectAsState()
 
+    val focusManager = LocalFocusManager.current
+    val interactionSource = remember { MutableInteractionSource() }
+
     if (showDeleteAllTasksDialog) {
         DeleteTaskDialog(
             onDismissRequest = {
@@ -52,6 +58,12 @@ fun TasksScreen(
     }
 
     Scaffold(
+        modifier = Modifier.clickable(
+            interactionSource = interactionSource,
+            indication = null
+        ) {
+            focusManager.clearFocus()
+        },
         topBar = {
             TopAppBar(
                 title = {
